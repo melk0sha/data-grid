@@ -1,0 +1,10 @@
+.table-col {
+  width: 15%;
+  border: 1px solid #6db8e4a8;
+  padding: 10px;
+
+  &:first-of-type,
+  &:last-of-type {
+    width: 5%;
+  }
+}
