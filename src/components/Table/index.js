@@ -21,9 +21,14 @@ export default class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {tableData.map((tableDataRow) => (
-            <TableRow key={tableDataRow.id} tableDataRow={tableDataRow} />
-          ))}
+          {tableData.map((tableDataRow) =>
+            tableDataRow.visible ? (
+              <TableRow
+                key={tableDataRow.id}
+                tableDataRow={tableDataRow.rowData}
+              />
+            ) : null
+          )}
         </tbody>
       </table>
     );

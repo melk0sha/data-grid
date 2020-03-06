@@ -20,6 +20,8 @@ const makeFake = (idx) => {
   };
 };
 
-const data = [...new Array(20)].map((el, idx) => makeFake(idx));
+const data = [...new Array(20)].map((el, idx) => {
+  return { id: `r${idx}`, rowData: makeFake(idx), visible: true };
+});
 
 export default data;

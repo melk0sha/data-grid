@@ -22,6 +22,7 @@
   .table-header-sort {
     display: inline-flex;
     flex-direction: column;
+    user-select: none;
 
     .up {
       font-size: 0.7rem;
