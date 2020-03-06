@@ -8,7 +8,7 @@ const tableHeaderData = {
   phone: { id: "h5", name: "phone", sort: sortName.NOT },
   email: { id: "h6", name: "email", sort: sortName.NOT },
   company: { id: "h7", name: "company", sort: sortName.NOT },
-  active: { id: "h8", name: "active", sort: sortName.NOT }
+  status: { id: "h8", name: "status", sort: sortName.NOT }
 };
 
 export default tableHeaderData;
