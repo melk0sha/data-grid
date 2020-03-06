@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { Multiselect } from "multiselect-react-dropdown";
-import companyName from "../../constants/companyName";
+import { Multiselect as MultiselectElement } from "multiselect-react-dropdown";
+import companyData from "../../data/companyData";
 import "./index.scss";
 
 export default class Multiselect extends Component {
   render() {
     return (
-      <Multiselect
-        options={companyName}
-        selectedValues={companyName} // Preselected value to persist in dropdown
-        onSelect={this.onSelect} // Function will trigger on select event
-        onRemove={this.onRemove} // Function will trigger on remove event
-        displayValue="name" // Property name to display in the dropdown options
+      <MultiselectElement
+        options={companyData}
+        selectedValues={companyData}
+        // onSelect={this.onSelect} // Function will trigger on select event
+        // onRemove={this.onRemove} // Function will trigger on remove event
+        displayValue="name"
+        placeholder="Select company"
+        closeIcon="cancel"
       />
     );
   }

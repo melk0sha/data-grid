@@ -1,7 +1,7 @@
-import { companies } from "../data/tableData";
-
-const companyName = companies.map((company, idx) => {
-  return { id: idx, name: company };
-});
+const companyName = {
+  ABC: "ABC Inc.",
+  NEMIGA: "Nemiga Co.",
+  FLIGHT: "Flight Group"
+};
 
 export default companyName;

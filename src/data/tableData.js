@@ -1,10 +1,7 @@
 import faker from "faker";
+import companyName from "../constants/companyName";
 
 faker.seed(125);
-
-export const companies = [...new Array(3)].map(() =>
-  faker.company.companyName()
-);
 
 const status = {
   student: "Student",
@@ -19,7 +16,7 @@ const makeFake = (idx) => {
     country: faker.address.country(),
     phone: faker.phone.phoneNumber("(###) ###-####"),
     email: faker.internet.email(),
-    company: faker.random.arrayElement(companies),
+    company: faker.random.objectElement(companyName),
     status: faker.random.objectElement(status)
   };
 };

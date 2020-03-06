@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Toggle from "./components/Toggle";
+import Multiselect from "./components/Multiselect";
 import Search from "./components/Search";
 import Table from "./components/Table";
 import tableData from "./data/tableData";
@@ -13,7 +14,8 @@ export default class App extends Component {
   state = {
     table: tableData,
     tableHeader: tableHeaderData,
-    searchValue: ""
+    searchValue: "",
+    multiselectedValues: ""
   };
 
   onColumnSort = ({
@@ -76,6 +78,7 @@ export default class App extends Component {
       <>
         <div className="widgets">
           <Toggle onToggle={onToggle} />
+          <Multiselect />
           <Search searchValue={searchValue} onSearch={onSearch} />
         </div>
         <Table
