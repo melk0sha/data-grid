@@ -6,16 +6,19 @@ import Table from "./components/Table";
 import tableData from "./data/tableData";
 import tableHeaderData from "./data/tableHeaderData";
 import sortName from "./constants/sortName";
+import companyName from "./constants/companyName";
 import toggleName from "./constants/toggleName";
 import resetSort from "./utils/resetSort";
 import sortTable from "./utils/sortTable";
+import filter from "./utils/filter";
 
 export default class App extends Component {
   state = {
     table: tableData,
     tableHeader: tableHeaderData,
     searchValue: "",
-    multiselectedValues: ""
+    multiselectedValues: Object.values(companyName),
+    toggleValue: toggleName.ALL
   };
 
   onColumnSort = ({
@@ -37,48 +40,36 @@ export default class App extends Component {
 
   onSearch = ({ target: { value } }) => {
     value = value.toLowerCase();
-    let { table } = this.state;
-
-    table.forEach((tableRow) => {
-      tableRow.visible = Object.keys(tableRow.rowData).some((tableCol) =>
-        tableRow.rowData[tableCol]
-          .toString()
-          .toLowerCase()
-          .includes(value)
-      );
-    });
+    let { table, multiselectedValues, toggleValue } = this.state;
+    filter(table, multiselectedValues, value, toggleValue);
 
     this.setState({ table, searchValue: value });
   };
 
   onToggle = ({ target: { id } }) => {
-    const { table } = this.state;
+    const { table, multiselectedValues, searchValue } = this.state;
+    filter(table, multiselectedValues, searchValue, id);
 
-    table.forEach((tableRow) => {
-      switch (id) {
-        default:
-        case toggleName.ALL:
-          tableRow.visible = true;
-          break;
-        case toggleName.STUDENT:
-        case toggleName.EMPLOYEE:
-          tableRow.visible = tableRow.rowData[toggleName.STATUS] === id;
-          break;
-      }
-    });
+    this.setState({ table, toggleValue: id });
+  };
 
-    this.setState({ table });
+  onSelect = (selectedValues) => {
+    const { table, searchValue, toggleValue } = this.state;
+    selectedValues = selectedValues.map((selectedValue) => selectedValue.name);
+    filter(table, selectedValues, searchValue, toggleValue);
+
+    this.setState({ table, multiselectedValues: selectedValues });
   };
 
   render() {
-    const { onColumnSort, onSearch, onToggle } = this;
+    const { onColumnSort, onSearch, onToggle, onSelect } = this;
     const { table, tableHeader, searchValue } = this.state;
 
     return (
       <>
         <div className="widgets">
           <Toggle onToggle={onToggle} />
-          <Multiselect />
+          <Multiselect onSelect={onSelect} />
           <Search searchValue={searchValue} onSearch={onSearch} />
         </div>
         <Table
