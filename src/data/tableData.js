@@ -17,12 +17,11 @@ const makeFake = (idx) => {
     phone: faker.phone.phoneNumber("(###) ###-####"),
     email: faker.internet.email(),
     company: faker.random.objectElement(companyName),
-    status: faker.random.objectElement(status)
+    status: faker.random.objectElement(status),
+    visible: true
   };
 };
 
-const data = [...new Array(20)].map((el, idx) => {
-  return { id: `r${idx}`, rowData: makeFake(idx), visible: true };
-});
+const data = [...new Array(20)].map((el, idx) => makeFake(idx));
 
 export default data;

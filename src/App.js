@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Toggle from "./components/Toggle";
+import Toggle from "./components/ToggleFilter";
 import Multiselect from "./components/Multiselect";
 import Search from "./components/Search";
 import Table from "./components/Table";
@@ -11,8 +11,8 @@ import toggleName from "./constants/toggleName";
 import resetSort from "./utils/resetSort";
 import sortTable from "./utils/sortTable";
 import filter from "./utils/filter";
-// import events from "./constants/events";
-// import keyName from "./constants/keyName";
+import events from "./constants/events";
+import keyName from "./constants/keyName";
 
 export default class App extends Component {
   state = {
@@ -20,42 +20,45 @@ export default class App extends Component {
     tableHeader: tableHeaderData,
     searchValue: "",
     multiselectedValues: Object.values(companyName),
-    toggleValue: toggleName.ALL
+    toggleValue: toggleName.ALL,
+    isShift: false
   };
 
-  // isShift = false;
+  componentDidMount() {
+    const { onShiftSort } = this;
 
-  // componentDidMount() {
-  //   const { onShiftSort } = this;
+    document.addEventListener(events.KEYDOWN, onShiftSort);
+    document.addEventListener(events.KEYUP, onShiftSort);
+  }
 
-  //   document.addEventListener(events.KEYDOWN, onShiftSort);
-  //   document.addEventListener(events.KEYUP, onShiftSort);
-  // }
-  //
   onColumnSort = ({
     currentTarget: {
       dataset: { columnName }
     }
   }) => {
-    const { table } = this.state;
+    let { table, isShift } = this.state;
     let { tableHeader } = this.state;
 
-    if (tableHeader[columnName].sort === sortName.NOT) {
+    if (tableHeader[columnName].sort === sortName.NOT && !isShift) {
       tableHeader = resetSort(tableHeader);
     }
 
-    sortTable(tableHeader, table, columnName);
+    table = sortTable(table, tableHeader, columnName, isShift);
 
     this.setState({ table, tableHeader });
   };
 
-  // onShiftSort = ({ key, type }) => {
-  //   if (type === keyName.KEYDOWN && key === keyName.SHIFT) {
-  //     this.isShift = true;
-  //   } else if (type === keyName.KEYUP && key === keyName.SHIFT) {
-  //     this.isShift = false;
-  //   }
-  // };
+  onShiftSort = ({ key, type }) => {
+    let { isShift } = this.state;
+
+    if (type === events.KEYDOWN && key === keyName.SHIFT) {
+      isShift = true;
+    } else if (type === events.KEYUP && key === keyName.SHIFT) {
+      isShift = false;
+    }
+
+    this.setState({ isShift });
+  };
 
   onSearch = ({ target: { value } }) => {
     value = value.toLowerCase();

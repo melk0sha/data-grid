@@ -7,11 +7,9 @@ const filter = (table, selectedValues, searchValue, toggleValue) => {
       default:
       case toggleName.ALL:
         tableRow.visible =
-          selectedValues.includes(
-            tableRow.rowData[tableHeaderData.company.name]
-          ) &&
-          Object.keys(tableRow.rowData).some((tableCol) =>
-            tableRow.rowData[tableCol]
+          selectedValues.includes(tableRow[tableHeaderData.company.name]) &&
+          Object.keys(tableRow).some((tableCol) =>
+            tableRow[tableCol]
               .toString()
               .toLowerCase()
               .includes(searchValue)
@@ -20,16 +18,14 @@ const filter = (table, selectedValues, searchValue, toggleValue) => {
       case toggleName.STUDENT:
       case toggleName.EMPLOYEE:
         tableRow.visible =
-          selectedValues.includes(
-            tableRow.rowData[tableHeaderData.company.name]
-          ) &&
-          Object.keys(tableRow.rowData).some((tableCol) =>
-            tableRow.rowData[tableCol]
+          selectedValues.includes(tableRow[tableHeaderData.company.name]) &&
+          Object.keys(tableRow).some((tableCol) =>
+            tableRow[tableCol]
               .toString()
               .toLowerCase()
               .includes(searchValue)
           ) &&
-          tableRow.rowData[toggleName.STATUS] === toggleValue;
+          tableRow[toggleName.STATUS] === toggleValue;
         break;
     }
   });

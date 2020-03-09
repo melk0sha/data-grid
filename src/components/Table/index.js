@@ -11,22 +11,21 @@ export default class Table extends Component {
       <table className="table">
         <thead>
           <tr className="table-header-row">
-            {Object.keys(tableHeader).map((tableHeaderItem, idx) => (
-              <TableHeader
-                key={tableHeader[tableHeaderItem].id}
-                tableHeaderItem={tableHeader[tableHeaderItem]}
-                onColumnSort={onColumnSort}
-              />
-            ))}
+            {Object.keys(tableHeader).map((tableHeaderItem) =>
+              tableHeaderItem.visible ? (
+                <TableHeader
+                  key={tableHeader[tableHeaderItem].id}
+                  tableHeaderItem={tableHeader[tableHeaderItem]}
+                  onColumnSort={onColumnSort}
+                />
+              ) : null
+            )}
           </tr>
         </thead>
         <tbody>
-          {tableData.map((tableDataRow) =>
+          {tableData.map((tableDataRow, idx) =>
             tableDataRow.visible ? (
-              <TableRow
-                key={tableDataRow.id}
-                tableDataRow={tableDataRow.rowData}
-              />
+              <TableRow key={idx} tableDataRow={tableDataRow} />
             ) : null
           )}
         </tbody>
