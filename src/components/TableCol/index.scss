@@ -1,4 +1,14 @@
 .table-col {
-  border: 1px solid #6db8e4a8;
   padding: 10px;
+  border-bottom: 1px solid #6db8e4a8;
+  border-right: 1px solid #6db8e4a8;
+
+  &:first-of-type {
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    background-color: #e8f4ff;
+    border-left: 1px solid #6db8e4a8;
+  }
 }

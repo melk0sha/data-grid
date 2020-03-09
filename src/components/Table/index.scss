@@ -1,8 +1,9 @@
 .table {
   width: 100%;
   text-overflow: ellipsis;
-  border-collapse: collapse;
   table-layout: fixed;
   text-align: center;
   font-size: 0.9rem;
+  border-collapse: separate;
+  border-spacing: 0;
 }

@@ -5,12 +5,6 @@ export default class TableCol extends Component {
   render() {
     const { tableDataCol } = this.props;
 
-    return (
-      <td className="table-col">
-        {typeof tableDataCol === "boolean"
-          ? tableDataCol.toString()
-          : tableDataCol}
-      </td>
-    );
+    return <td className="table-col">{tableDataCol}</td>;
   }
 }

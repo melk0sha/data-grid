@@ -11,6 +11,8 @@ import toggleName from "./constants/toggleName";
 import resetSort from "./utils/resetSort";
 import sortTable from "./utils/sortTable";
 import filter from "./utils/filter";
+// import events from "./constants/events";
+// import keyName from "./constants/keyName";
 
 export default class App extends Component {
   state = {
@@ -21,6 +23,15 @@ export default class App extends Component {
     toggleValue: toggleName.ALL
   };
 
+  // isShift = false;
+
+  // componentDidMount() {
+  //   const { onShiftSort } = this;
+
+  //   document.addEventListener(events.KEYDOWN, onShiftSort);
+  //   document.addEventListener(events.KEYUP, onShiftSort);
+  // }
+  //
   onColumnSort = ({
     currentTarget: {
       dataset: { columnName }
@@ -37,6 +48,14 @@ export default class App extends Component {
 
     this.setState({ table, tableHeader });
   };
+
+  // onShiftSort = ({ key, type }) => {
+  //   if (type === keyName.KEYDOWN && key === keyName.SHIFT) {
+  //     this.isShift = true;
+  //   } else if (type === keyName.KEYUP && key === keyName.SHIFT) {
+  //     this.isShift = false;
+  //   }
+  // };
 
   onSearch = ({ target: { value } }) => {
     value = value.toLowerCase();

@@ -5,12 +5,21 @@
   color: #ffffff;
   font-weight: bold;
   background-color: #0b8dd8;
-  border: 1px solid #0074b8;
+  border-top: 1px solid #0074b8;
+  border-bottom: 1px solid #0074b8;
+  border-right: 1px solid #0074b8;
   cursor: pointer;
   width: 12%;
+  position: sticky;
+  top: 0;
+  z-index: 0;
 
   &:first-of-type {
     width: 5%;
+    left: 0;
+    background-color: #0b8dd8;
+    border: 1px solid #0074b8;
+    z-index: 1;
   }
 
   &:last-of-type {
