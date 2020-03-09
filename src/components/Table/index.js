@@ -12,7 +12,7 @@ export default class Table extends Component {
         <thead>
           <tr className="table-header-row">
             {Object.keys(tableHeader).map((tableHeaderItem) =>
-              tableHeaderItem.visible ? (
+              tableHeader[tableHeaderItem].visible ? (
                 <TableHeader
                   key={tableHeader[tableHeaderItem].id}
                   tableHeaderItem={tableHeader[tableHeaderItem]}

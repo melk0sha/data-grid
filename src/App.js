@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Toggle from "./components/ToggleFilter";
+import ToggleFilter from "./components/ToggleFilter";
 import Multiselect from "./components/Multiselect";
 import Search from "./components/Search";
 import Table from "./components/Table";
@@ -13,6 +13,7 @@ import sortTable from "./utils/sortTable";
 import filter from "./utils/filter";
 import events from "./constants/events";
 import keyName from "./constants/keyName";
+import ToggleColumn from "./components/ToggleColumn";
 
 export default class App extends Component {
   state = {
@@ -68,7 +69,7 @@ export default class App extends Component {
     this.setState({ table, searchValue: value });
   };
 
-  onToggle = ({ target: { id } }) => {
+  onToggleFilter = ({ target: { id } }) => {
     const { table, multiselectedValues, searchValue } = this.state;
     filter(table, multiselectedValues, searchValue, id);
 
@@ -83,14 +84,34 @@ export default class App extends Component {
     this.setState({ table, multiselectedValues: selectedValues });
   };
 
+  onToggleColumn = ({
+    currentTarget: {
+      dataset: { columnName }
+    }
+  }) => {
+    const { table, tableHeader } = this.state;
+    // table.forEach((tableRow) => tableRow[columnName])
+    console.log(columnName);
+  };
+
   render() {
-    const { onColumnSort, onSearch, onToggle, onSelect } = this;
+    const {
+      onColumnSort,
+      onSearch,
+      onToggleFilter,
+      onSelect,
+      onToggleColumn
+    } = this;
     const { table, tableHeader, searchValue } = this.state;
 
     return (
       <>
+        <ToggleColumn
+          tableHeader={tableHeader}
+          onToggleColumn={onToggleColumn}
+        />
         <div className="widgets">
-          <Toggle onToggle={onToggle} />
+          <ToggleFilter onToggleFilter={onToggleFilter} />
           <Multiselect onSelect={onSelect} />
           <Search searchValue={searchValue} onSearch={onSearch} />
         </div>

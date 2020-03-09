@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import toggleName from "../../constants/toggleName";
 import "./index.scss";
 
-export default class Toggle extends Component {
+export default class ToggleFilter extends Component {
   render() {
-    const { onToggle } = this.props;
+    const { onToggleFilter } = this.props;
 
     return (
       <div className="toggle-wrapper">
@@ -14,7 +14,7 @@ export default class Toggle extends Component {
             type="radio"
             name="radio"
             defaultChecked
-            onChange={onToggle}
+            onChange={onToggleFilter}
           />
           <label className="radio-label" htmlFor={toggleName.ALL}>
             {toggleName.ALL}
@@ -26,7 +26,7 @@ export default class Toggle extends Component {
             id={toggleName.STUDENT}
             type="radio"
             name="radio"
-            onChange={onToggle}
+            onChange={onToggleFilter}
           />
           <label className="radio-label" htmlFor={toggleName.STUDENT}>
             {toggleName.STUDENT}
@@ -38,7 +38,7 @@ export default class Toggle extends Component {
             id={toggleName.EMPLOYEE}
             type="radio"
             name="radio"
-            onChange={onToggle}
+            onChange={onToggleFilter}
           />
           <label className="radio-label" htmlFor={toggleName.EMPLOYEE}>
             {toggleName.EMPLOYEE}
