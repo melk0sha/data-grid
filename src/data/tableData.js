@@ -10,14 +10,17 @@ const status = {
 
 const makeFake = (idx) => {
   return {
-    id: 1 + idx,
-    name: faker.name.findName(),
-    dateOfBirth: faker.date.between(1970, 2000).toLocaleDateString(),
-    country: faker.address.country(),
-    phone: faker.phone.phoneNumber("(###) ###-####"),
-    email: faker.internet.email(),
-    company: faker.random.objectElement(companyName),
-    status: faker.random.objectElement(status),
+    id: { name: 1 + idx, visible: true },
+    name: { name: faker.name.findName(), visible: true },
+    dateOfBirth: {
+      name: faker.date.between(1970, 2000).toLocaleDateString(),
+      visible: true
+    },
+    country: { name: faker.address.country(), visible: true },
+    phone: { name: faker.phone.phoneNumber("(###) ###-####"), visible: true },
+    email: { name: faker.internet.email(), visible: true },
+    company: { name: faker.random.objectElement(companyName), visible: true },
+    status: { name: faker.random.objectElement(status), visible: true },
     visible: true
   };
 };

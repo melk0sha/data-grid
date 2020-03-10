@@ -9,8 +9,8 @@ export default class TableRow extends Component {
     return (
       <tr className="table-row">
         {Object.values(tableDataRow).map((tableDataCol, idx) =>
-          typeof tableDataCol !== "boolean" ? (
-            <TableCol key={idx} tableDataCol={tableDataCol} />
+          typeof tableDataCol !== "boolean" && tableDataCol.visible ? (
+            <TableCol key={idx} tableDataCol={tableDataCol.name} />
           ) : null
         )}
       </tr>
