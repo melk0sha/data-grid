@@ -6,4 +6,10 @@
   font-size: 0.9rem;
   border-collapse: separate;
   border-spacing: 0;
+
+  &:first-of-type {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 }

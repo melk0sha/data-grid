@@ -10,16 +10,16 @@
   border-right: 1px solid #0074b8;
   cursor: pointer;
   width: 12%;
-  position: sticky;
-  top: 0;
   z-index: 0;
 
   &:first-of-type {
     width: 5%;
+    position: sticky;
+    top: 0;
     left: 0;
     background-color: #0b8dd8;
     border: 1px solid #0074b8;
-    z-index: 1;
+    z-index: 2;
   }
 
   &:last-of-type {
