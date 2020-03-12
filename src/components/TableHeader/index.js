@@ -7,31 +7,29 @@ export default class TableHeader extends Component {
     const { tableHeaderItem, onColumnSort } = this.props;
 
     return (
-      <th
+      <div
         className={`table-header-col table-header-col-${tableHeaderItem.name}`}
         onClick={onColumnSort}
         data-column-name={tableHeaderItem.name}
       >
-        <div className="table-header-col-wrapper">
-          <span className="table-header-name">{tableHeaderItem.name}</span>
-          <span className="table-header-sort">
-            <i
-              className={`material-icons up${
-                tableHeaderItem.sort === sortName.UP ? " active" : ""
-              }`}
-            >
-              play_arrow
-            </i>
-            <i
-              className={`material-icons down${
-                tableHeaderItem.sort === sortName.DOWN ? " active" : ""
-              }`}
-            >
-              play_arrow
-            </i>
-          </span>
-        </div>
-      </th>
+        <span className="table-header-name">{tableHeaderItem.name}</span>
+        <span className="table-header-sort">
+          <i
+            className={`material-icons up${
+              tableHeaderItem.sort === sortName.UP ? " active" : ""
+            }`}
+          >
+            play_arrow
+          </i>
+          <i
+            className={`material-icons down${
+              tableHeaderItem.sort === sortName.DOWN ? " active" : ""
+            }`}
+          >
+            play_arrow
+          </i>
+        </span>
+      </div>
     );
   }
 }

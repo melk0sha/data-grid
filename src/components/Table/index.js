@@ -16,10 +16,15 @@ export default class Table extends Component {
     return isVirtualization ? (
       <List
         height={450}
-        itemCount={tableData.length + 1}
+        itemCount={
+          tableData.length
+            ? tableData.filter((tableDataRow) => tableDataRow.visible).length +
+              1
+            : 0
+        }
         itemSize={60}
         className="table"
-        itemData={tableData}
+        itemData={tableData.filter((tableDataRow) => tableDataRow.visible)}
         innerElementType={({ children, ...props }) => (
           <TableWrapper
             children={children}
@@ -35,34 +40,25 @@ export default class Table extends Component {
               {...data}
               index={data.index - 1}
               tableHeader={tableHeader}
+              type="yesVirtual"
             />
           ) : null
         }
       </List>
     ) : (
       <>
-        <table className="table">
-          <tbody>
-            <tr className="table-header-row">
-              {Object.keys(tableHeader).map((tableHeaderItem) =>
-                tableHeader[tableHeaderItem].visible ? (
-                  <TableHeader
-                    key={tableHeader[tableHeaderItem].id}
-                    tableHeaderItem={tableHeader[tableHeaderItem]}
-                    onColumnSort={onColumnSort}
-                  />
-                ) : null
-              )}
-            </tr>
-          </tbody>
-        </table>
         <div className="table">
+          <TableHeaderWrapper
+            tableHeader={tableHeader}
+            onColumnSort={onColumnSort}
+          />
           {tableData.map((tableRowData, idx) => (
             <TableRow
               key={idx}
               data={tableData}
               index={idx}
               tableHeader={tableHeader}
+              type="noVirtual"
             />
           ))}
         </div>
@@ -74,22 +70,29 @@ export default class Table extends Component {
 const TableWrapper = ({ children, tableHeader, onColumnSort, ...props }) => {
   return (
     <div {...props}>
-      <table className="table">
-        <tbody>
-          <tr className="table-header-row">
-            {Object.keys(tableHeader).map((tableHeaderItem) =>
-              tableHeader[tableHeaderItem].visible ? (
-                <TableHeader
-                  key={tableHeader[tableHeaderItem].id}
-                  tableHeaderItem={tableHeader[tableHeaderItem]}
-                  onColumnSort={onColumnSort}
-                />
-              ) : null
-            )}
-          </tr>
-        </tbody>
-      </table>
+      <TableHeaderWrapper
+        tableHeader={tableHeader}
+        onColumnSort={onColumnSort}
+      />
       {children}
+    </div>
+  );
+};
+
+const TableHeaderWrapper = ({ tableHeader, onColumnSort }) => {
+  return (
+    <div className="table">
+      <div className="table-header-row">
+        {Object.keys(tableHeader).map((tableHeaderItem) =>
+          tableHeader[tableHeaderItem].visible ? (
+            <TableHeader
+              key={tableHeader[tableHeaderItem].id}
+              tableHeaderItem={tableHeader[tableHeaderItem]}
+              onColumnSort={onColumnSort}
+            />
+          ) : null
+        )}
+      </div>
     </div>
   );
 };

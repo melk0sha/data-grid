@@ -56,12 +56,12 @@
       }
     }
     & + label {
-      font-size: 14px;
+      font-size: 1rem;
       line-height: 21px;
       display: inline-block;
       vertical-align: top;
       cursor: pointer;
-      margin-left: 4px;
+      margin-left: 14px;
     }
   }
   input[type="checkbox"] {
@@ -97,32 +97,13 @@
         --ab: var(--active-inner);
         --x: 17px;
       }
-      &:disabled {
-        &:not(:checked) {
-          &:after {
-            opacity: 0.6;
-          }
-        }
-      }
-    }
-  }
-  input[type="radio"] {
-    border-radius: 50%;
-    &:after {
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      background: var(--active-inner);
-      opacity: 0;
-      transform: scale(var(--s, 0.7));
-    }
-    &:checked {
-      --s: 0.5;
     }
   }
 }
 
 .switch-virt-wrapper {
-  margin: 16px 0;
+  margin: 3px 20px;
   position: relative;
+  display: flex;
+  font-size: 1rem;
 }

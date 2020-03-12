@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 .table-header-col {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
   height: 60px;
   color: #ffffff;
   font-weight: bold;
@@ -10,6 +14,7 @@
   border-right: 1px solid #0074b8;
   cursor: pointer;
   width: 12%;
+  flex-grow: 1;
 
   &-id {
     position: sticky;
@@ -50,13 +55,6 @@
     width: 9%;
   }
 
-  .table-header-col-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-
   .table-header-name {
     text-transform: uppercase;
   }
@@ -89,6 +87,7 @@
 }
 
 .table-header-row {
+  display: flex;
   height: 30px;
   width: 100%;
 }
