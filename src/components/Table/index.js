@@ -25,7 +25,11 @@ export default class Table extends Component {
         <tbody>
           {tableData.map((tableDataRow, idx) =>
             tableDataRow.visible ? (
-              <TableRow key={idx} tableDataRow={tableDataRow} />
+              <TableRow
+                key={idx}
+                tableDataRow={tableDataRow}
+                tableHeader={tableHeader}
+              />
             ) : null
           )}
         </tbody>

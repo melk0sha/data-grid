@@ -2,18 +2,15 @@ import tableHeaderData from "../data/tableHeaderData";
 import toggleName from "../constants/toggleName";
 
 const filter = (table, selectedValues, searchValue, toggleValue) => {
-  console.log();
   table.forEach((tableRow) => {
     switch (toggleValue) {
       default:
       case toggleName.ALL:
         tableRow.visible =
-          selectedValues.includes(
-            tableRow[tableHeaderData.company.name].name
-          ) &&
+          selectedValues.includes(tableRow[tableHeaderData.company.name]) &&
           Object.values(tableRow).some((tableCol) => {
             return typeof tableCol !== "boolean"
-              ? tableCol.name
+              ? tableCol
                   .toString()
                   .toLowerCase()
                   .includes(searchValue)
@@ -23,18 +20,16 @@ const filter = (table, selectedValues, searchValue, toggleValue) => {
       case toggleName.STUDENT:
       case toggleName.EMPLOYEE:
         tableRow.visible =
-          selectedValues.includes(
-            tableRow[tableHeaderData.company.name].name
-          ) &&
+          selectedValues.includes(tableRow[tableHeaderData.company.name]) &&
           Object.values(tableRow).some((tableCol) => {
             return typeof tableCol !== "boolean"
-              ? tableCol.name
+              ? tableCol
                   .toString()
                   .toLowerCase()
                   .includes(searchValue)
               : false;
           }) &&
-          tableRow[toggleName.STATUS].name === toggleValue;
+          tableRow[toggleName.STATUS] === toggleValue;
         break;
     }
   });

@@ -4,13 +4,14 @@ import "./index.scss";
 
 export default class TableRow extends Component {
   render() {
-    const { tableDataRow } = this.props;
+    const { tableDataRow, tableHeader } = this.props;
 
     return (
       <tr className="table-row">
         {Object.values(tableDataRow).map((tableDataCol, idx) =>
-          typeof tableDataCol !== "boolean" && tableDataCol.visible ? (
-            <TableCol key={idx} tableDataCol={tableDataCol.name} />
+          typeof tableDataCol !== "boolean" &&
+          tableHeader[Object.keys(tableDataRow)[idx]].visible ? (
+            <TableCol key={idx} tableDataCol={tableDataCol} />
           ) : null
         )}
       </tr>

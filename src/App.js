@@ -89,15 +89,10 @@ export default class App extends Component {
       dataset: { columnName }
     }
   }) => {
-    const { table, tableHeader } = this.state;
-
-    table.forEach(
-      (tableRow) =>
-        (tableRow[columnName].visible = !tableRow[columnName].visible)
-    );
+    const { tableHeader } = this.state;
     tableHeader[columnName].visible = !tableHeader[columnName].visible;
 
-    this.setState({ table, tableHeader });
+    this.setState({ tableHeader });
   };
 
   render() {
