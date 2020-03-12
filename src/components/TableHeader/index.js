@@ -8,7 +8,7 @@ export default class TableHeader extends Component {
 
     return (
       <th
-        className="table-header-col"
+        className={`table-header-col table-header-col-${tableHeaderItem.name}`}
         onClick={onColumnSort}
         data-column-name={tableHeaderItem.name}
       >

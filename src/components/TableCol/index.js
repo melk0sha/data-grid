@@ -3,8 +3,12 @@ import "./index.scss";
 
 export default class TableCol extends Component {
   render() {
-    const { tableDataCol } = this.props;
+    const { tableDataCol, tableDataClassName } = this.props;
 
-    return <td className="table-col">{tableDataCol}</td>;
+    return (
+      <div className={`table-col table-col-${tableDataClassName}`}>
+        {tableDataCol}
+      </div>
+    );
   }
 }

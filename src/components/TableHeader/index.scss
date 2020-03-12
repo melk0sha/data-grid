@@ -10,32 +10,44 @@
   border-right: 1px solid #0074b8;
   cursor: pointer;
   width: 12%;
-  z-index: 0;
 
-  &:first-of-type {
-    width: 5%;
+  &-id {
     position: sticky;
-    top: 0;
+    width: 5%;
     left: 0;
-    background-color: #0b8dd8;
+    top: 0;
+    z-index: 3;
     border: 1px solid #0074b8;
-    z-index: 2;
+    background-color: #0b8dd8;
+    border-left: 1px solid #6db8e4a8;
   }
 
-  &:last-of-type {
-    width: 9%;
+  &-name {
+    width: 13%;
   }
 
-  &:nth-of-type(3) {
-    width: 10%;
+  &-dateOfBirth {
+    width: 12%;
   }
 
-  &:nth-of-type(5) {
-    width: 10%;
+  &-country {
+    width: 16%;
   }
 
-  &:nth-of-type(6) {
+  &-phone {
+    width: 13%;
+  }
+
+  &-email {
     width: 20%;
+  }
+
+  &-company {
+    width: 12%;
+  }
+
+  &-status {
+    width: 9%;
   }
 
   .table-header-col-wrapper {

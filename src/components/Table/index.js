@@ -9,34 +9,54 @@ export default class Table extends Component {
     const { tableHeader, tableData, onColumnSort } = this.props;
 
     return (
-      <>
-        <table className="table">
-          <thead>
-            <tr className="table-header-row">
-              {Object.keys(tableHeader).map((tableHeaderItem) =>
-                tableHeader[tableHeaderItem].visible ? (
-                  <TableHeader
-                    key={tableHeader[tableHeaderItem].id}
-                    tableHeaderItem={tableHeader[tableHeaderItem]}
-                    onColumnSort={onColumnSort}
-                  />
-                ) : null
-              )}
-            </tr>
-          </thead>
-        </table>
-        <List
-          height={150}
-          itemCount={1}
-          itemSize={50}
-          outerElementType="table"
-          innerElementType="tbody"
-          className="table"
-          itemData={[tableData, tableHeader]}
-        >
-          {TableRow}
-        </List>
-      </>
+      <List
+        height={450}
+        itemCount={tableData.length + 1}
+        itemSize={60}
+        className="table"
+        itemData={tableData}
+        innerElementType={({ children, ...props }) => (
+          <TableWrapper
+            children={children}
+            tableHeader={tableHeader}
+            onColumnSort={onColumnSort}
+            {...props}
+          />
+        )}
+      >
+        {(data) =>
+          data.index !== 0 ? (
+            <TableRow
+              {...data}
+              index={data.index - 1}
+              tableHeader={tableHeader}
+            />
+          ) : null
+        }
+      </List>
     );
   }
 }
+
+const TableWrapper = ({ children, tableHeader, onColumnSort, ...props }) => {
+  return (
+    <div {...props}>
+      <table className="table">
+        <tbody>
+          <tr className="table-header-row">
+            {Object.keys(tableHeader).map((tableHeaderItem) =>
+              tableHeader[tableHeaderItem].visible ? (
+                <TableHeader
+                  key={tableHeader[tableHeaderItem].id}
+                  tableHeaderItem={tableHeader[tableHeaderItem]}
+                  onColumnSort={onColumnSort}
+                />
+              ) : null
+            )}
+          </tr>
+        </tbody>
+      </table>
+      {children}
+    </div>
+  );
+};
