@@ -22,7 +22,7 @@ export default class App extends Component {
     searchValue: "",
     multiselectedValues: Object.values(companyName),
     toggleValue: toggleName.ALL,
-    isShift: false
+    isShift: { value: false, isFirst: false }
   };
 
   componentDidMount() {
@@ -40,7 +40,10 @@ export default class App extends Component {
     let { table, isShift } = this.state;
     let { tableHeader } = this.state;
 
-    if (tableHeader[columnName].sort === sortName.NOT && !isShift) {
+    if (
+      (tableHeader[columnName].sort === sortName.NOT && !isShift.value) ||
+      isShift.isFirst
+    ) {
       tableHeader = resetSort(tableHeader);
     }
 
@@ -53,9 +56,9 @@ export default class App extends Component {
     let { isShift } = this.state;
 
     if (type === events.KEYDOWN && key === keyName.SHIFT) {
-      isShift = true;
+      isShift = { value: true, isFirst: true };
     } else if (type === events.KEYUP && key === keyName.SHIFT) {
-      isShift = false;
+      isShift = { value: false, isFirst: false };
     }
 
     this.setState({ isShift });

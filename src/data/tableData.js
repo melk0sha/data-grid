@@ -22,6 +22,6 @@ const makeFake = (idx) => {
   };
 };
 
-const data = [...new Array(20)].map((el, idx) => makeFake(idx));
+const data = [...new Array(1000)].map((el, idx) => makeFake(idx));
 
 export default data;

@@ -4,11 +4,12 @@ import sortName from "../constants/sortName";
 const sortColumns = [];
 
 const sortTable = (table, tableHeader, columnName, isShift) => {
-  if (isShift && !sortColumns.includes(columnName)) {
+  if (isShift.value && !isShift.isFirst && !sortColumns.includes(columnName)) {
     sortColumns.push(columnName);
-  } else if (!isShift) {
+  } else if (!isShift.value || isShift.isFirst) {
     sortColumns.length = 0;
     sortColumns.push(columnName);
+    isShift.isFirst = false;
   }
 
   table = orderBy(
