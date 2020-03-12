@@ -28,6 +28,7 @@ export default class Table extends Component {
         <List
           height={150}
           itemCount={1}
+          itemSize={50}
           outerElementType="table"
           innerElementType="tbody"
           className="table"
