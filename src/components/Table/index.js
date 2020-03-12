@@ -6,9 +6,14 @@ import "./index.scss";
 
 export default class Table extends Component {
   render() {
-    const { tableHeader, tableData, onColumnSort } = this.props;
+    const {
+      tableHeader,
+      tableData,
+      onColumnSort,
+      isVirtualization
+    } = this.props;
 
-    return (
+    return isVirtualization ? (
       <List
         height={450}
         itemCount={tableData.length + 1}
@@ -34,6 +39,34 @@ export default class Table extends Component {
           ) : null
         }
       </List>
+    ) : (
+      <>
+        <table className="table">
+          <tbody>
+            <tr className="table-header-row">
+              {Object.keys(tableHeader).map((tableHeaderItem) =>
+                tableHeader[tableHeaderItem].visible ? (
+                  <TableHeader
+                    key={tableHeader[tableHeaderItem].id}
+                    tableHeaderItem={tableHeader[tableHeaderItem]}
+                    onColumnSort={onColumnSort}
+                  />
+                ) : null
+              )}
+            </tr>
+          </tbody>
+        </table>
+        <div className="table">
+          {tableData.map((tableRowData, idx) => (
+            <TableRow
+              key={idx}
+              data={tableData}
+              index={idx}
+              tableHeader={tableHeader}
+            />
+          ))}
+        </div>
+      </>
     );
   }
 }

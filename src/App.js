@@ -14,6 +14,7 @@ import filter from "./utils/filter";
 import events from "./constants/events";
 import keyName from "./constants/keyName";
 import ToggleColumn from "./components/ToggleColumn";
+import SwitchVirtualization from "./components/SwitchVirtualization";
 
 export default class App extends Component {
   state = {
@@ -22,7 +23,8 @@ export default class App extends Component {
     searchValue: "",
     multiselectedValues: Object.values(companyName),
     toggleValue: toggleName.ALL,
-    isShift: { value: false, isFirst: false }
+    isShift: { value: false, isFirst: false },
+    isVirtualization: true
   };
 
   componentDidMount() {
@@ -98,15 +100,22 @@ export default class App extends Component {
     this.setState({ tableHeader });
   };
 
+  onSwitchVirt = () => {
+    this.setState((prevState) => {
+      return { isVirtualization: !prevState.isVirtualization };
+    });
+  };
+
   render() {
     const {
       onColumnSort,
       onSearch,
       onToggleFilter,
       onSelect,
-      onToggleColumn
+      onToggleColumn,
+      onSwitchVirt
     } = this;
-    const { table, tableHeader, searchValue } = this.state;
+    const { table, tableHeader, searchValue, isVirtualization } = this.state;
 
     return (
       <>
@@ -114,6 +123,7 @@ export default class App extends Component {
           tableHeader={tableHeader}
           onToggleColumn={onToggleColumn}
         />
+        <SwitchVirtualization onSwitchVirt={onSwitchVirt} />
         <div className="widgets">
           <ToggleFilter onToggleFilter={onToggleFilter} />
           <Multiselect onSelect={onSelect} />
@@ -123,6 +133,7 @@ export default class App extends Component {
           tableHeader={tableHeader}
           tableData={table}
           onColumnSort={onColumnSort}
+          isVirtualization={isVirtualization}
         />
       </>
     );
