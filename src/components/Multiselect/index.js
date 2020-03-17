@@ -5,12 +5,14 @@ import "./index.scss";
 
 export default class Multiselect extends Component {
   render() {
-    const { onSelect } = this.props;
+    const { onSelect, multiselectedValues } = this.props;
 
     return (
       <MultiselectElement
         options={companyData}
-        selectedValues={companyData}
+        selectedValues={companyData.filter((company) =>
+          multiselectedValues.some((value) => value === company.name)
+        )}
         onSelect={onSelect}
         onRemove={onSelect}
         displayValue="name"

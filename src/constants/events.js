@@ -1,7 +1,8 @@
 const events = {
   KEYDOWN: "keydown",
   KEYUP: "keyup",
-  CLICK: "click"
+  CLICK: "click",
+  BEFOREUNLOAD: "beforeunload"
 };
 
 export default events;

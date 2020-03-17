@@ -4,7 +4,7 @@ import "./index.scss";
 
 export default class ToggleFilter extends Component {
   render() {
-    const { onToggleFilter } = this.props;
+    const { onToggleFilter, toggleValue } = this.props;
 
     return (
       <div className="toggle-wrapper">
@@ -13,7 +13,7 @@ export default class ToggleFilter extends Component {
             id={toggleName.ALL}
             type="radio"
             name="radio"
-            defaultChecked
+            defaultChecked={toggleValue === toggleName.ALL}
             onChange={onToggleFilter}
           />
           <label className="radio-label" htmlFor={toggleName.ALL}>
@@ -26,6 +26,7 @@ export default class ToggleFilter extends Component {
             id={toggleName.STUDENT}
             type="radio"
             name="radio"
+            defaultChecked={toggleValue === toggleName.STUDENT}
             onChange={onToggleFilter}
           />
           <label className="radio-label" htmlFor={toggleName.STUDENT}>
@@ -38,6 +39,7 @@ export default class ToggleFilter extends Component {
             id={toggleName.EMPLOYEE}
             type="radio"
             name="radio"
+            defaultChecked={toggleValue === toggleName.EMPLOYEE}
             onChange={onToggleFilter}
           />
           <label className="radio-label" htmlFor={toggleName.EMPLOYEE}>

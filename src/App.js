@@ -18,13 +18,16 @@ import SwitchVirtualization from "./components/SwitchVirtualization";
 
 export default class App extends Component {
   state = {
-    table: tableData,
-    tableHeader: tableHeaderData,
-    searchValue: "",
-    multiselectedValues: Object.values(companyName),
-    toggleValue: toggleName.ALL,
+    table: JSON.parse(localStorage.getItem("table")) || tableData,
+    tableHeader:
+      JSON.parse(localStorage.getItem("tableHeader")) || tableHeaderData,
+    searchValue: localStorage.getItem("searchValue") || "",
+    multiselectedValues:
+      JSON.parse(localStorage.getItem("multiselectedValues")) ||
+      Object.values(companyName),
+    toggleValue: localStorage.getItem("toggleValue") || toggleName.ALL,
     isShift: { value: false, isFirst: false },
-    isVirtualization: true
+    isVirtualization: localStorage.getItem("isVirtualization") || true
   };
 
   componentDidMount() {
@@ -32,6 +35,31 @@ export default class App extends Component {
 
     document.addEventListener(events.KEYDOWN, onShiftSort);
     document.addEventListener(events.KEYUP, onShiftSort);
+  }
+
+  componentDidUpdate() {
+    const {
+      table,
+      tableHeader,
+      searchValue,
+      multiselectedValues,
+      toggleValue,
+      isVirtualization
+    } = this.state;
+
+    const saveSettings = () => {
+      localStorage.setItem("table", JSON.stringify(table));
+      localStorage.setItem("tableHeader", JSON.stringify(tableHeader));
+      localStorage.setItem("searchValue", searchValue);
+      localStorage.setItem(
+        "multiselectedValues",
+        JSON.stringify(multiselectedValues)
+      );
+      localStorage.setItem("toggleValue", toggleValue);
+      localStorage.setItem("isVirtualization", isVirtualization);
+    };
+
+    window.addEventListener(events.BEFOREUNLOAD, saveSettings);
   }
 
   onColumnSort = ({
@@ -115,7 +143,14 @@ export default class App extends Component {
       onToggleColumn,
       onSwitchVirt
     } = this;
-    const { table, tableHeader, searchValue, isVirtualization } = this.state;
+    const {
+      table,
+      tableHeader,
+      searchValue,
+      multiselectedValues,
+      toggleValue,
+      isVirtualization
+    } = this.state;
 
     return (
       <>
@@ -125,8 +160,14 @@ export default class App extends Component {
         />
         <SwitchVirtualization onSwitchVirt={onSwitchVirt} />
         <div className="widgets">
-          <ToggleFilter onToggleFilter={onToggleFilter} />
-          <Multiselect onSelect={onSelect} />
+          <ToggleFilter
+            onToggleFilter={onToggleFilter}
+            toggleValue={toggleValue}
+          />
+          <Multiselect
+            onSelect={onSelect}
+            multiselectedValues={multiselectedValues}
+          />
           <Search searchValue={searchValue} onSearch={onSearch} />
         </div>
         <Table

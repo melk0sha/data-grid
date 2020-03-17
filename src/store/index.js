@@ -1,7 +1,9 @@
 import { createStore } from "redux";
-// import { devToolsEnhancer } from "redux-devtools-extension/logOnlyInProduction";
 import dataGridApp from "../reducers";
 
-const store = createStore(dataGridApp /*, devToolsEnhancer() */);
+const store = createStore(
+  dataGridApp,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;
