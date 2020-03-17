@@ -1,0 +1,26 @@
+.toggle-col {
+  display: flex;
+  font-size: 1rem;
+  padding: 20px;
+
+  .toggle-col-text {
+    margin-right: 10px;
+  }
+
+  .toggle-col-items {
+    display: flex;
+
+    .toggle-col-item {
+      color: #2950d1;
+      font-weight: bold;
+      margin-right: 10px;
+      cursor: pointer;
+
+      &:not(:last-of-type)::after {
+        content: "-";
+        margin-left: 10px;
+        cursor: text;
+      }
+    }
+  }
+}

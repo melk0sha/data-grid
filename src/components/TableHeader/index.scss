@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.table-header-col {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 60px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #0b8dd8;
+  border-top: 1px solid #0074b8;
+  border-bottom: 1px solid #0074b8;
+  border-right: 1px solid #0074b8;
+  cursor: pointer;
+  width: 12%;
+  flex-grow: 1;
+
+  &-id {
+    position: sticky;
+    width: 5%;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    border: 1px solid #0074b8;
+    background-color: #0b8dd8;
+    border-left: 1px solid #6db8e4a8;
+  }
+
+  &-name {
+    width: 13%;
+  }
+
+  &-dateOfBirth {
+    width: 12%;
+  }
+
+  &-country {
+    width: 16%;
+  }
+
+  &-phone {
+    width: 13%;
+  }
+
+  &-email {
+    width: 20%;
+  }
+
+  &-company {
+    width: 12%;
+  }
+
+  &-status {
+    width: 9%;
+  }
+
+  .table-header-name {
+    text-transform: uppercase;
+  }
+
+  .table-header-sort {
+    display: inline-flex;
+    flex-direction: column;
+    user-select: none;
+
+    .up {
+      font-size: 0.7rem;
+      transform: rotate(-90deg);
+      color: #c0c0c0;
+
+      &.active {
+        color: red;
+      }
+    }
+
+    .down {
+      font-size: 0.7rem;
+      transform: rotate(90deg);
+      color: #c0c0c0;
+
+      &.active {
+        color: red;
+      }
+    }
+  }
+}
+
+.table-header-row {
+  display: flex;
+  height: 30px;
+  width: 100%;
+}

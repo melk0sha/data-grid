@@ -1,0 +1,13 @@
+.table-row {
+  display: flex;
+  height: 60px;
+  background-color: #e8f4ff;
+
+  &:hover {
+    background-color: #cfe8ff;
+  }
+}
+
+.table-row-virt {
+  margin-top: 30px;
+}

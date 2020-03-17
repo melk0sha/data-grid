@@ -1,0 +1,49 @@
+.table-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  padding: 10px;
+  border-bottom: 1px solid #6db8e4a8;
+  border-right: 1px solid #6db8e4a8;
+  flex-grow: 1;
+
+  &-id {
+    position: sticky;
+    width: 5%;
+    left: 0;
+    top: 0;
+    visibility: visible;
+    z-index: 1;
+    background-color: #e8f4ff;
+    border-left: 1px solid #6db8e4a8;
+  }
+
+  &-name {
+    width: 13%;
+  }
+
+  &-dateOfBirth {
+    width: 12%;
+  }
+
+  &-country {
+    width: 16%;
+  }
+
+  &-phone {
+    width: 13%;
+  }
+
+  &-email {
+    width: 20%;
+  }
+
+  &-company {
+    width: 12%;
+  }
+
+  &-status {
+    width: 9%;
+  }
+}

@@ -1,0 +1,16 @@
+@import "./fonts.scss";
+@import "./widgets.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+#root {
+  padding: 0 20px;
+  font-family: "Lato", sans-serif;
+  min-width: 1300px;
+}
